@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { useDispatch } from 'react-redux';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import Select from '../components/Select';
-import { useDispatch } from 'react-redux';
 
 const UF_LIST = [
   'Rio de Janeiro',
@@ -39,7 +39,7 @@ function PersonalForm() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (Object.values(form).every((valor) => valor !== '')) {
-      dispatch({type: 'UPDATE_PERSONAL_DATA', payload: { ...form } });
+      dispatch({ type: 'UPDATE_PERSONAL_DATA', payload: { ...form } });
       navigate('/professional-form');
     }
   };
