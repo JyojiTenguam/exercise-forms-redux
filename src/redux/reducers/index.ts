@@ -17,7 +17,20 @@ const INITIAL_STATE = {
 };
 
 const rootReducer = (state = INITIAL_STATE, action: AnyAction) => {
-  return state;
+  switch (action.type) {
+    case 'UPDATE_PERSONAL_DATA':
+      return {
+        ...state,
+        personalData: action.payload,
+      };
+    case 'UPDATE_PROFESSIONAL_DATA':
+      return {
+        ...state,
+        professionalData: action.payload,
+      };
+    default:
+      return state;
+  }
 };
 
 export default rootReducer;

@@ -4,6 +4,7 @@ import Input from '../components/Input';
 import TextArea from '../components/TextArea';
 import Button from '../components/Button';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 function ProfessionalForm() {
   const [form, setForm] = useState({
@@ -13,6 +14,7 @@ function ProfessionalForm() {
   });
   const { resume, role, description } = form;
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleChange = (
     { target }: React.ChangeEvent<
@@ -28,6 +30,7 @@ function ProfessionalForm() {
       onSubmit={ (event) => {
         event.preventDefault();
         if (resume.length >= 10) {
+          dispatch({type: 'UPDATE_PROFESSIONAL_DATA', payload: { ...form } });
           navigate('/form-display');
         }
       } }

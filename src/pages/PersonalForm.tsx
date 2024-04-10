@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import Select from '../components/Select';
+import { useDispatch } from 'react-redux';
 
 const UF_LIST = [
   'Rio de Janeiro',
@@ -26,7 +27,8 @@ function PersonalForm() {
   });
   const { name, email, cpf, address, city, uf } = form;
   const navigate = useNavigate();
-  
+  const dispatch = useDispatch();
+
   const handleChange = (
     { target }: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
@@ -37,6 +39,7 @@ function PersonalForm() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (Object.values(form).every((valor) => valor !== '')) {
+      dispatch({type: 'UPDATE_PERSONAL_DATA', payload: { ...form } });
       navigate('/professional-form');
     }
   };
